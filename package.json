@@ -1,6 +1,6 @@
 {
   "name": "@khaledz370/popup-picker",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "popup list picker",
   "main": "src/index.tsx",
   "scripts": {
@@ -20,5 +20,5 @@
   "bugs": {
     "url": "https://github.com/kz370/popup-picker/issues"
   },
-  "homepage": "https://github.com/kz370/popup-picker#readme"
+  "homepage": "https://github.com/kz370/popup-picker"
 }
