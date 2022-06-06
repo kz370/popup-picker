@@ -20,11 +20,9 @@ interface RequiredProps {
 
 interface OptionalProps {
     /** Change the title and the popuplist button flexDirection */
-    align?: 'column' | 'row'|'row-reverse','column-reverse',
+    align?: 'column' | 'row' | 'row-reverse'| 'column-reverse',
     /** Sets the title name*/
     title?: string;
-    // /** Change the back-ground color of datePicker */
-    style?: object;
     /** An array of list values must be in [{text:'',value:''}] form */
     data?: Array;
     /** Enable search through data  */
@@ -44,7 +42,6 @@ interface OptionalProps {
 const defaultProps: OptionalProps = {
     align: "column",
     title: "Select",
-    style: {},
     data: [],
     search: false,
     value: null,
@@ -64,7 +61,6 @@ export default function PopupList(props: AllProps) {
 
     const align = props.align
     const title = props.title
-    const style = props.style
     const search = props.search
     const prevData = props.data
     const value = props.value
@@ -131,7 +127,7 @@ export default function PopupList(props: AllProps) {
     }
 
     return (
-        <View style={[style]}>
+        <View>
             <View style={{ justifyContent: 'center', alignContent: 'center', flexDirection: align }}>
                 {title && <Text style={[s.title, { color: titleColor, textAlign: titleAlign, fontSize: fontSize }]}>{title}:</Text>}
                 <TouchableOpacity style={{}} onPress={() => openModal()} >
