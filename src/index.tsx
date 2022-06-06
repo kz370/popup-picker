@@ -54,7 +54,7 @@ const defaultProps: OptionalProps = {
 interface AllProps extends OptionalProps, RequiredProps { }
 
 
-export default function PopupList(props: AllProps) {
+export default function PopupPicker(props: AllProps) {
     const zoom = useRef(new Animated.Value(0)).current;
     const [showModal, setshowModal] = useState(false)
     const [searchText, setsearchText] = useState("")

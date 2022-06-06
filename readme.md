@@ -28,6 +28,8 @@ align:
 
 ```bash
     Change the title and the popuplist button flexDirection
+    type enum 'column' | 'row' | 'row-reverse'| 'column-reverse'
+    default "column"
 ```
 
 title:
@@ -119,20 +121,20 @@ export default function App() {
   return (
     <PopupPicker
       search={true}
+      title={'values'}
+      data={data}
+      value={value}
+      selectedColor="purple"
+      titleColor="red"
       // you can use value and text
       onSelect={(value, text) => {
         setValue(value);
         setText(text);
       }}
       // or you can ignore text
-      onSelect={(value) => {
+      onSelect={value => {
         setValue(value);
       }}
-      title={tr.t("Location")}
-      data={data}
-      value={value}
-      selectedColor="purple"
-      titleColor="red"
     />
   );
 }
@@ -140,9 +142,8 @@ export default function App() {
 
 ## Screenshots
 
-![alt text](https://raw.githubusercontent.com/kz370/myImages/main/popupPicker.png)
 ![alt text](https://raw.githubusercontent.com/kz370/myImages/main/popupPickerBtn.png)
-
+![alt text](https://raw.githubusercontent.com/kz370/myImages/main/popupPicker.png)
 
 ## upcoming updates:
 
