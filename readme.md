@@ -11,13 +11,13 @@ A Popup item selector
 npm:
 
 ```bash
-  npm i @khaledz370/popup-picker
+  npm i @khaledz370/popuppicker-react-native
 ```
 
 yarn:
 
 ```bash
-  yarn add @khaledz370/popup-picker
+  yarn add @khaledz370/popuppicker-react-native
 ```
 
 ## Usage

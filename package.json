@@ -1,6 +1,6 @@
 {
-  "name": "@khaledz370/popup-picker",
-  "version": "0.0.2",
+  "name": "@khaledz370/popuppicker-react-native",
+  "version": "0.0.0",
   "description": "popup list picker",
   "main": "src/index.tsx",
   "scripts": {
