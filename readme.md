@@ -210,7 +210,7 @@ export default function App() {
         textExtractor="text" //text is already the default textExtractor this is just and example
         selectedColor="green"
         titleColor="red"
-        multiselect={true}
+        multiSelect={true}
         checkBoxStyle={{ borderRadius: 20 }}
         values={[,]}
         showValues={false}
