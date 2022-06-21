@@ -20,15 +20,15 @@ interface RequiredProps {
 
 interface OptionalProps {
     /** Change the title and the popuplist button flexDirection */
-    align?: 'column' | 'row' | 'row-reverse'| 'column-reverse',
+    align?: 'column' | 'row' | 'row-reverse' | 'column-reverse',
     /** Sets the title name*/
     title?: string;
     /** An array of list values must be in [{text:'',value:''}] form */
-    data?: Array;
+    data?: Array<object>;
     /** Enable search through data  */
     search?: boolean
     /** set the selected value */
-    value?: string | number
+    value?: string | number | null
     /** Change the color of the title */
     titleColor?: string
     /** Change the color of the button */
@@ -37,6 +37,12 @@ interface OptionalProps {
     titleAlign?: 'center' | 'left' | 'right'
     /** change font size for the title and list and button */
     fontSize?: number
+    /** enables multiple seletion */
+    multiple?: boolean
+    /** replace value key with a custom one */
+    valueExtractor?: string
+    /** replace text key with a custom one */
+    textExtractor?: string
 }
 
 const defaultProps: OptionalProps = {
@@ -48,13 +54,15 @@ const defaultProps: OptionalProps = {
     titleColor: 'black',
     selectedColor: 'black',
     titleAlign: 'center',
-    fontSize: 18
+    fontSize: 18,
+    multiple: false,
+    valueExtractor: 'value',
+    textExtractor: 'text'
 }
 
 interface AllProps extends OptionalProps, RequiredProps { }
 
-
-export default function PopupPicker(props: AllProps) {
+const PopupPicker = (props: AllProps) => {
     const zoom = useRef(new Animated.Value(0)).current;
     const [showModal, setshowModal] = useState(false)
     const [searchText, setsearchText] = useState("")
@@ -68,10 +76,13 @@ export default function PopupPicker(props: AllProps) {
     const selectedColor = props.selectedColor
     const titleAlign = props.titleAlign
     const fontSize = props.fontSize
+    const multple = props.multiple
+    const valueExtractor = props.valueExtractor
+    const textExtractor = props.textExtractor
 
     const index = getIndex(prevData, value)
     const [data, setdata] = useState(prevData)
-    const [selected, setselected] = useState(value)
+    const [selected, setselected] = useState(prevData[getIndex(data, value)][textExtractor])
 
     const openModal = () => {
         setshowModal(true)
@@ -83,19 +94,19 @@ export default function PopupPicker(props: AllProps) {
     }
 
     useEffect(() => {
-        setselected(value)
+        setselected(prevData[getIndex(data, value)][textExtractor])
         setdata(prevData)
     }, [value, prevData])
 
     const onSelect = (e) => {
-        setselected(e.text)
+        setselected(e[textExtractor])
         Animated.timing(zoom, {
             toValue: 0,
             duration: 300,
             useNativeDriver: false
         }).start();
         setTimeout(() => {
-            props.onSelect(e.value, e.text);
+            props.onSelect(e[valueExtractor], e[textExtractor]);
             setshowModal(false)
             setsearchText('')
             setdata(prevData)
@@ -146,10 +157,11 @@ export default function PopupPicker(props: AllProps) {
                                 <View style={[s.flatListContainer]}>
                                     {search && <TextInput placeholder='Search' style={[s.input, { fontSize: fontSize }]} value={`${searchText}`} onChangeText={(e) => onSearch(e)} />}
                                     <FlatList
+                                        keyExtractor={(item, index) => item[valueExtractor]}
                                         data={data}
                                         renderItem={({ item, index }) => (
-                                            <TouchableOpacity key={index} style={[s.item, { backgroundColor: item.text === selected ? 'grey' : 'white' }]} onPress={() => { onSelect(item) }}>
-                                                <Text style={[{ color: 'black', fontSize: fontSize }]}>{item.text}</Text>
+                                            <TouchableOpacity key={index} style={[s.item, { backgroundColor: item[textExtractor] === selected ? 'grey' : 'white' }]} onPress={() => { onSelect(item) }}>
+                                                <Text style={[{ color: 'black', fontSize: fontSize }]}>{item[textExtractor]}</Text>
                                             </TouchableOpacity>
                                         )}
                                         initialScrollIndex={searchText.length > 0 ? false : index}
@@ -202,3 +214,8 @@ const s = StyleSheet.create({
         padding: 20,
     }
 })
+
+
+PopupPicker.defaultProps = defaultProps;
+
+export default PopupPicker;

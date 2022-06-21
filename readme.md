@@ -43,9 +43,24 @@ title:
 data:
 
 ```bash
-    An array of list values must be in [{text:'',value:''}] form
+    An array of list values default form [{text:'',value:''}]
     type array
     default []
+    if you have different keys you should use valueExtractor and textExtractor
+```
+
+valueExtractor:
+
+```bash
+  replace value key with a custom one
+  default 'value'
+```
+
+textExtractor:
+
+```bash
+    replace text key with a custom one
+    default 'text'
 ```
 
 search:
@@ -104,7 +119,7 @@ onSelect:
 
 ## Usage/Examples
 
-### Slider basic example
+### PopupPicker basic example
 
 ```javascript
 import PopupPicker from "@khaledz370/popup-picker";
