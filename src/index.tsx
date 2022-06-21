@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, Modal, FlatList, Animated, StyleSheet, TextInput, Pressable, TouchableOpacity } from 'react-native';
+import { View, Text, Modal, FlatList, Animated, TextInput, Pressable, TouchableOpacity } from 'react-native';
+import s from './Styles'
 
-const getIndex = (array, value) => {
+const getIndex = (array, value, valueExtractor, textExtractor) => {
     let i, index
     for (i = 0; i < array.length; i++) {
-        if (`${value}` === `${array[i].value}` || `${value}` === `${array[i].text}`) {
+        if (`${value}` === `${array[i][valueExtractor]}` || `${value}` === `${array[i][textExtractor]}`) {
             index = i
         }
     }
@@ -80,9 +81,9 @@ const PopupPicker = (props: AllProps) => {
     const valueExtractor = props.valueExtractor
     const textExtractor = props.textExtractor
 
-    const index = getIndex(prevData, value)
+    const index = getIndex(prevData, value, valueExtractor, textExtractor)
     const [data, setdata] = useState(prevData)
-    const [selected, setselected] = useState(prevData[getIndex(data, value)][textExtractor])
+    const [selected, setselected] = useState(prevData[getIndex(data, value, valueExtractor, textExtractor)][textExtractor])
 
     const openModal = () => {
         setshowModal(true)
@@ -94,7 +95,7 @@ const PopupPicker = (props: AllProps) => {
     }
 
     useEffect(() => {
-        setselected(prevData[getIndex(data, value)][textExtractor])
+        setselected(prevData[getIndex(data, value, valueExtractor, textExtractor)][textExtractor])
         setdata(prevData)
     }, [value, prevData])
 
@@ -174,47 +175,6 @@ const PopupPicker = (props: AllProps) => {
         </View>
     )
 }
-
-const s = StyleSheet.create({
-    main: {
-        flex: 1,
-        justifyContent: 'center',
-        elevation: 50,
-    },
-    outside: {
-        flex: 1,
-    },
-    modalContainer: {
-        justifyContent: 'center',
-        position: 'absolute',
-        width: "100%",
-        height: "100%",
-        backgroundColor: 'red'
-    },
-    title: {
-        margin: 5
-    },
-    input: {
-        backgroundColor: 'rgba(255,255,255,.5)',
-        padding: 20
-    },
-    flatListContainer: {
-        backgroundColor: 'grey',
-        justifyContent: 'center',
-        elevation: 50,
-        borderRadius: 15,
-        overflow: 'hidden',
-        maxHeight: 500,
-        marginHorizontal: 30,
-    },
-    item: {
-        backgroundColor: '#f9c2ff',
-        borderBottomColor: 'grey',
-        borderBottomWidth: 2,
-        padding: 20,
-    }
-})
-
 
 PopupPicker.defaultProps = defaultProps;
 

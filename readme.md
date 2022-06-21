@@ -53,6 +53,7 @@ valueExtractor:
 
 ```bash
   replace value key with a custom one
+  type string
   default 'value'
 ```
 
@@ -60,6 +61,7 @@ textExtractor:
 
 ```bash
     replace text key with a custom one
+    type string
     default 'text'
 ```
 
