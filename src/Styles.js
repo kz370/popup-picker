@@ -32,10 +32,34 @@ const s = StyleSheet.create({
         marginHorizontal: 30,
     },
     item: {
-        backgroundColor: '#f9c2ff',
+        backgroundColor: 'white',
         borderBottomColor: 'grey',
         borderBottomWidth: 2,
         padding: 20,
+    },
+    itemWithCheckBox: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    checkBox: {
+        backgroundColor: 'white',
+        borderWidth: 2,
+        borderColor: 'black',
+        borderRadius: 1000
+    },
+    confirmCancelBtn: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        backgroundColor: 'white',
+        borderTopColor: 'grey',
+        borderTopWidth: 2
+    },
+    btns: {
+        textAlign: 'center',
+        flexGrow: .5,
+        fontSize: 20,
+        paddingVertical: 15
     }
 })
 

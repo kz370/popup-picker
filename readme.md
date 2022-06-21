@@ -89,14 +89,6 @@ titleColor:
   default "black"
 ```
 
-selectedColor
-
-```bash
-  Change the color of the button
-  type color
-  default "black"
-```
-
 titleAlign
 
 ```bash
@@ -119,26 +111,62 @@ onSelect:
   returns the value and the text
 ```
 
+multiSelect:
+
+```bash
+  enables multi selection
+  default false
+```
+
+values:
+
+```bash
+  set initial values
+  type array of any "no objects"
+```
+
+showValues:
+
+```bash
+  only when multiselect is true
+  it toggles between showing the selected values or just showing "select"
+```
+
+checkBoxStyle:
+
+```bash
+  change the checkbox style
+```
+
+selectedColor
+
+```bash
+  Change the color of the button
+  type color
+  default "black"
+  incase of multiSelect is enabled it also changes the checked item color
+```
+
 ## Usage/Examples
 
 ### PopupPicker basic example
 
 ```javascript
-import PopupPicker from "@khaledz370/popup-picker";
+import PopupPicker from "@khaledz370/popuppicker-react-native";
 
 const data = [
-  {text:"text1",value:"value1"},
-  {text:"text2",value:"value1"},
-  {text:"text3",value:"value3"}
-  ]
+  { text: "text1", value: "value1" },
+  { text: "text2", value: "value1" },
+  { text: "text3", value: "value3" }
+];
 
 export default function App() {
-  const [value, setValue] = useState('value2');
-  const [text, setText] = useState('text2');
+  const [value, setValue] = useState("value2");
+  const [text, setText] = useState("text2");
   return (
     <PopupPicker
       search={true}
-      title={'values'}
+      title={"values"}
       data={data}
       value={value}
       selectedColor="purple"
@@ -162,8 +190,37 @@ export default function App() {
 ![alt text](https://raw.githubusercontent.com/kz370/myImages/main/popupPickerBtn.png)
 ![alt text](https://raw.githubusercontent.com/kz370/myImages/main/popupPicker.png)
 
-## upcoming updates:
+### PopupPicker multiSelect example
 
-```bash
-   Enable multi item selection
+```javascript
+import PopupPicker from "@khaledz370/popuppicker-react-native";
+
+const data = require("./timezones.json");
+
+export default function App() {
+  const [values, setValues] = useState([]);
+  return (
+    <View>
+      <PopupPicker
+        search={true}
+        title={"TimeZones"}
+        data={data}
+        align="row"
+        valueExtractor="value" //value is already the default valueExtractor this is just and example
+        textExtractor="text" //text is already the default textExtractor this is just and example
+        selectedColor="green"
+        titleColor="red"
+        multiselect={true}
+        checkBoxStyle={{ borderRadius: 20 }}
+        values={[,]}
+        showValues={false}
+        onConfirm={e => setValues(e)}
+      />
+    </View>
+  );
+}
 ```
+
+## Screenshots
+
+![alt text](https://raw.githubusercontent.com/kz370/myImages/main/multiSelection.png)
