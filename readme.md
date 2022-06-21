@@ -125,8 +125,8 @@ onSelect:
 import PopupPicker from "@khaledz370/popup-picker";
 
 const data = [
-  {text:"text1",value:"value1"}
-  {text:"text2",value:"value1"}
+  {text:"text1",value:"value1"},
+  {text:"text2",value:"value1"},
   {text:"text3",value:"value3"}
   ]
 
