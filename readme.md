@@ -206,8 +206,10 @@ export default function App() {
         title={"TimeZones"}
         data={data}
         align="row"
-        valueExtractor="value" //value is already the default valueExtractor this is just and example
-        textExtractor="text" //text is already the default textExtractor this is just and example
+        valueExtractor="value" /*value is already the default
+                                valueExtractor this is just an example*/
+        textExtractor="text" /*text is already the default 
+                                textExtractor this is just an example*/
         selectedColor="green"
         titleColor="red"
         multiSelect={true}

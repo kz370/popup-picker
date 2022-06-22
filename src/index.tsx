@@ -247,7 +247,7 @@ const PopupPicker = (props: AllProps) => {
                                                 } else {
                                                     return (
                                                         <TouchableOpacity key={index} style={[s.item, s.itemWithCheckBox]} onPress={() => { onSelect(item, index) }}>
-                                                            <Text style={[{ color: 'black', fontSize: fontSize }]}>{item[textExtractor]}</Text>
+                                                            <Text style={[{ color: 'black', fontSize: fontSize, maxWidth: '70%' }]}>{item[textExtractor]}</Text>
                                                             <View
                                                                 style={[s.checkBox, checkBoxStyle, { width: fontSize, height: fontSize, backgroundColor: selectedIndexes.includes(index) ? selectedColor : 'white' }]} >
                                                             </View>
